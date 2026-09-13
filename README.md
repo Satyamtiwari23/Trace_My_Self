@@ -605,7 +605,7 @@ Please keep **privacy, security, responsible OSINT practices, and user safety** 
 **Primary Contributor**
 
 * 🐙 GitHub: [@ayushkumargupta0551-blip](https://github.com/ayushkumargupta0551-blip)
-* 🔗 LinkedIn: **[Add LinkedIn URL here]**
+* 🔗 LinkedIn: [LinkedIn](https://www.linkedin.com/in/ayushkumargupta0551/)
 
 ---
 
@@ -613,8 +613,8 @@ Please keep **privacy, security, responsible OSINT practices, and user safety** 
 
 **Contributor**
 
-* 🐙 GitHub: **[Add GitHub URL here]**
-* 🔗 LinkedIn: **[Add LinkedIn URL here]**
+* 🐙 GitHub: [Satyamtiwari23](https://github.com/Satyamtiwari23)
+* 🔗 LinkedIn: [LinkedIn](https://www.linkedin.com/in/satyam-tiwari-8s5a4t3y8a7m4104/)
 
 ---
 
@@ -639,9 +639,9 @@ A ⭐ star on GitHub helps the project gain visibility and motivates further dev
 | 🚀 **Live Demo**                     | [TraceMySelf Live](https://ayushkumargupta0551-blip.github.io/Trace_My_Self/)   |
 | 💻 **Repository**                    | [TraceMySelf GitHub](https://github.com/ayushkumargupta0551-blip/Trace_My_Self) |
 | 👨‍💻 **Ayush Kumar Gupta — GitHub** | [@ayushkumargupta0551-blip](https://github.com/ayushkumargupta0551-blip)        |
-| 🔗 **Ayush — LinkedIn**              | **[Add LinkedIn URL here]**                                                     |
-| 👨‍💻 **Satyam Tiwari — GitHub**     | **[Add GitHub URL here]**                                                       |
-| 🔗 **Satyam — LinkedIn**             | **[Add LinkedIn URL here]**                                                     |
+| 🔗 **Ayush — LinkedIn**              | [LinkedIn](https://www.linkedin.com/in/ayushkumargupta0551/)          |
+| 👨‍💻 **Satyam Tiwari — GitHub**     | [Satyamtiwari23](https://github.com/Satyamtiwari23)                     |
+| 🔗 **Satyam — LinkedIn**             |  [LinkedIn](https://www.linkedin.com/in/satyam-tiwari-8s5a4t3y8a7m4104/)    |
 
 ---
 
