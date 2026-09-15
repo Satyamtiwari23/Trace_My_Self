@@ -527,36 +527,146 @@
     </div>
          <!-- Login page JS  -->
     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("loginForm");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const form = $("#loginForm"),
-          error = $("#loginError"),
-          loading = $("#loginLoading");
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          error.style.display = "none";
-          const email = $("#email").value.trim(),
-            pass = $("#password").value;
-          if (!email || !email.includes("@")) {
-            error.textContent = "Please enter a valid email address.";
-            error.style.display = "block";
-            return;
-          }
-          if (pass.length < 6) {
-            error.textContent = "Password must contain at least 6 characters.";
-            error.style.display = "block";
-            return;
-          }
-          loading.style.display = "flex";
-          setTimeout(() => {
-            localStorage.setItem(
-              "dfdUser",
-              JSON.stringify({ name: "Ayush Kumar Gupta", email }),
-            );
-            location.href = "dashboard.html";
-          }, 900);
+        const emailError = document.getElementById("emailError");
+        const loginError = document.getElementById("loginError");
+        const loading = document.getElementById("loginLoading");
+
+        // -----------------------------------------
+        // Show / hide password
+        // -----------------------------------------
+        document.querySelectorAll(".password-toggle").forEach((button) => {
+            button.addEventListener("click", () => {
+                const targetId = button.dataset.target;
+                const input = document.getElementById(targetId);
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    button.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    button.textContent = "Show";
+                }
+            });
         });
-      });
-    </script>
+
+
+        // -----------------------------------------
+        // Login form
+        // -----------------------------------------
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            emailError.style.display = "none";
+            loginError.style.display = "none";
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+
+            // -----------------------------------------
+            // Frontend validation
+            // -----------------------------------------
+            if (!email || !email.includes("@")) {
+                emailError.textContent =
+                    "Please enter a valid email address.";
+
+                emailError.style.display = "block";
+                return;
+            }
+
+            if (password.length < 6) {
+                loginError.textContent =
+                    "Password must contain at least 6 characters.";
+
+                loginError.style.display = "block";
+                return;
+            }
+
+
+            // -----------------------------------------
+            // Show loading
+            // -----------------------------------------
+            loading.style.display = "flex";
+
+
+            try {
+                // -----------------------------------------
+                // Send login request to backend
+                // -----------------------------------------
+                const response = await fetch(
+                    "http://localhost:5000/api/auth/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                // -----------------------------------------
+                // Hide loading
+                // -----------------------------------------
+                loading.style.display = "none";
+
+
+                // -----------------------------------------
+                // Login failed
+                // -----------------------------------------
+                if (!response.ok) {
+                    loginError.textContent =
+                        data.message || "Login failed.";
+
+                    loginError.style.display = "block";
+                    return;
+                }
+
+
+                // -----------------------------------------
+                // Store JWT token
+                // -----------------------------------------
+                localStorage.setItem("token", data.token);
+
+                // Store logged-in user information
+                localStorage.setItem(
+                    "dfdUser",
+                    JSON.stringify(data.user)
+                );
+
+
+                // -----------------------------------------
+                // Login successful
+                // -----------------------------------------
+                alert("Login successful.");
+
+                window.location.href = "dashboard.html";
+
+            } catch (error) {
+                console.error("Login request failed:", error);
+
+                loading.style.display = "none";
+
+                loginError.textContent =
+                    "Unable to connect to the server.";
+
+                loginError.style.display = "block";
+            }
+        });
+    });
+</script>
   </body>
 </html>
