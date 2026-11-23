@@ -641,7 +641,6 @@ flowchart TD
 ```
 
 ### Login Flow
-
 ```mermaid
 flowchart TD
     A[Login Request] --> B[Find User]
