@@ -70,8 +70,8 @@ const TOKEN_DURATION = 7 * 24 * 60 * 60 * 1000;
 
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     path: '/',
     maxAge: TOKEN_DURATION
 };
@@ -293,8 +293,8 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
     res.clearCookie(COOKIE_NAME, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         path: '/'
     });
 
