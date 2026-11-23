@@ -120,7 +120,7 @@
     const scanBtn = form.querySelector('.scan-btn');
 
 
-    const API_BASE = 'http://127.0.0.1:5050/api';
+    const API_BASE = 'https://trace-my-self.vercel.app/api';
     const API_URL = `${API_BASE}/scan`;
 
     const state = {
