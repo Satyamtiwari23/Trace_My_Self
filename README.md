@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://ayushkumargupta0551-blip.github.io/Trace_My_Self/"><strong>🚀 Live Demo</strong></a>
+  <a href="https://satyamtiwari23.github.io/Trace_My_Self/"><strong>🚀 Live Demo</strong></a>
   &nbsp; • &nbsp;
   <a href="https://github.com/ayushkumargupta0551-blip/Trace_My_Self"><strong>💻 GitHub Repository</strong></a>
 </p>
