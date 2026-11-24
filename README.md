@@ -270,6 +270,15 @@ The backend:
 4. Generates a JWT if authentication succeeds.
 5. Sends the JWT through an HTTP-only cookie.
 
+## Step 4 — Select Scan Type
+
+The user selects the available analysis mode:
+
+- Email.
+- Phone.
+
+The application submits the appropriate input to the backend.
+
 ## Step 3 — Ownership Verification
 
 Before scanning, the application uses its verification workflows.
@@ -288,15 +297,6 @@ Before scanning, the application uses its verification workflows.
 2. The Telegram verification workflow is started.
 3. User shares their own phone contact with the Telegram bot.
 4. Backend checks the verification state.
-
-## Step 4 — Select Scan Type
-
-The user selects the available analysis mode:
-
-- Email.
-- Phone.
-
-The application submits the appropriate input to the backend.
 
 ## Step 5 — Backend Processing
 
