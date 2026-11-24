@@ -31,29 +31,27 @@
 3. [Project Objectives](#-project-objectives)
 4. [Features](#-features)
 5. [How Trace_My_Self Works](#-how-trace_my_self-works)
-6. [System Architecture](#-system-architecture)
-7. [Detailed System Design](#-detailed-system-design)
-8. [Technology Stack](#-technology-stack)
-9. [Project Structure](#-project-structure)
-10. [Authentication and Verification](#-authentication-and-verification)
-11. [Email Exposure Analysis](#-email-exposure-analysis)
-12. [Phone Number Analysis](#-phone-number-analysis)
-13. [Risk Assessment Engine](#-risk-assessment-engine)
-14. [API Documentation](#-api-documentation)
-15. [Database Design](#-database-design)
-16. [Security Architecture](#-security-architecture)
-17. [Installation and Setup](#-installation-and-setup)
-18. [Environment Variables](#-environment-variables)
-19. [Deployment Architecture](#-deployment-architecture)
-20. [Error Handling](#-error-handling)
-21. [Limitations and Important Notes](#-limitations-and-important-notes)
-22. [Future Enhancements](#-future-enhancements)
-23. [Use Cases](#-use-cases)
-24. [Learning Outcomes](#-learning-outcomes)
-25. [Contributing](#-contributing)
-26. [Disclaimer](#-disclaimer)
-27. [License](#-license)
-28. [Acknowledgements](#-acknowledgements)
+6. [Technology Stack](#-technology-stack)
+7. [Project Structure](#-project-structure)
+8. [Authentication and Verification](#-authentication-and-verification)
+9. [Email Exposure Analysis](#-email-exposure-analysis)
+10. [Phone Number Analysis](#-phone-number-analysis)
+11. [Risk Assessment Engine](#-risk-assessment-engine)
+12. [API Documentation](#-api-documentation)
+13. [Database Design](#-database-design)
+14. [Security Architecture](#-security-architecture)
+15. [Installation and Setup](#-installation-and-setup)
+16. [Environment Variables](#-environment-variables)
+17. [Deployment Architecture](#-deployment-architecture)
+18. [Error Handling](#-error-handling)
+19. [Limitations and Important Notes](#-limitations-and-important-notes)
+20. [Future Enhancements](#-future-enhancements)
+21. [Use Cases](#-use-cases)
+22. [Learning Outcomes](#-learning-outcomes)
+23. [Contributing](#-contributing)
+24. [Disclaimer](#-disclaimer)
+25. [License](#-license)
+26. [Acknowledgements](#-acknowledgements)
 
 ---
 
@@ -316,183 +314,6 @@ The frontend processes the response and displays the analysis results.
 
 ---
 
-# 🏗️ System Architecture
-
-Trace_My_Self follows a client-server architecture with separately deployed frontend and backend components.
-
-## High-Level Architecture
-
-```mermaid
-flowchart TD
-    A[User] --> B[GitHub Pages Frontend]
-    B --> C[HTML / CSS / JavaScript]
-    C --> D[Express REST API on Vercel]
-
-    D --> E[Authentication Middleware]
-    E --> F[MongoDB Database]
-
-    D --> G[Verification Module]
-    G --> H[Email OTP Service]
-    G --> I[Telegram Bot]
-
-    D --> J[Email Scanner]
-    D --> K[Phone Scanner]
-
-    J --> L[DNS / MX Lookup]
-    J --> M[XposedOrNot API]
-
-    J --> N[Risk Engine]
-    K --> N
-
-    N --> O[Structured JSON Response]
-    O --> C
-    C --> P[Results Interface]
-'''
-
-
-# Architecture Explanation
-
-| Component | Responsibility |
-|---|---|
-| Frontend | Collects user input and displays results |
-| REST API | Handles communication between frontend and backend |
-| Authentication module | Handles signup, login, logout, and JWT verification |
-| MongoDB | Stores user account information |
-| Verification module | Manages email and phone ownership verification |
-| Email scanner | Performs email analysis |
-| Phone scanner | Handles phone-related analysis |
-| Risk engine | Calculates the exposure risk score |
-| External intelligence provider | Supplies breach-related information |
-| Telegram bot | Supports phone ownership verification |
-
-## Why Separate Frontend and Backend?
-
-Separating the frontend and backend provides several advantages:
-
-- Independent deployment.
-- Clear separation of responsibilities.
-- Easier maintenance.
-- Reusable API endpoints.
-- Better scalability.
-- Improved code organization.
-
-The frontend can be hosted using GitHub Pages while the backend runs independently on Vercel.
-
-## 🧠 Detailed System Design
-
-### 1. Presentation Layer
-
-Location: `frontend/`
-
-The presentation layer is responsible for user interaction.
-
-Its responsibilities include:
-
-- Displaying the application interface.
-- Accepting email and phone inputs.
-- Handling login and signup interactions.
-- Communicating with backend APIs.
-- Displaying loading and error states.
-- Rendering analysis results.
-
-Technologies:
-
-- HTML5.
-- CSS3.
-- JavaScript.
-
-The frontend does not independently perform authoritative authentication or risk calculations. Those responsibilities belong to the backend.
-
-### 2. Application Layer
-
-Location: `backend/server.js`
-
-The application layer manages the incoming HTTP requests.
-
-It is responsible for:
-
-- Initializing Express.
-- Configuring middleware.
-- Configuring CORS.
-- Parsing JSON requests.
-- Handling cookies.
-- Applying rate limits.
-- Registering API routes.
-- Connecting application modules.
-
-The server acts as the central entry point for backend operations.
-
-### 3. Authentication Layer
-
-Location: `backend/auth.js`
-
-This module manages user authentication.
-
-Important functions:
-
-| Function | Responsibility |
-|---|---|
-| `connectDB()` | Connects to MongoDB |
-| `createToken()` | Generates JWT tokens |
-| `setLoginCookie()` | Sets the authentication cookie |
-| `publicUser()` | Returns safe user information |
-| `requireAuth()` | Protects authenticated endpoints |
-
-The authentication layer prevents unauthorized access to protected routes.
-
-### 4. Verification Layer
-
-Location: `backend/verification.js`
-
-This module manages the verification workflows.
-
-It handles:
-
-- Starting email verification.
-- Validating email OTPs.
-- Starting phone verification.
-- Telegram bot integration.
-- Retrieving verification status.
-- Checking scan authorization.
-
-The verification layer separates ownership verification from the actual scanning logic.
-
-### 5. Intelligence Layer
-
-The intelligence layer is responsible for collecting and processing information.
-
-It includes:
-
-- Email scanning.
-- Phone-related analysis.
-- External intelligence integration.
-- DNS/MX checks.
-- Data normalization.
-
-The purpose is to transform external information into a consistent format that the application can process.
-
-### 6. Risk Assessment Layer
-
-Location: `backend/riskEngine.js`
-
-The risk engine receives the findings produced by the scanning modules.
-
-It evaluates the available information and generates:
-
-- Numerical risk score.
-- Risk classification.
-- Structured findings.
-
-This keeps risk calculation separate from external data collection.
-
-### 7. Data Layer
-
-Database: MongoDB
-
-The data layer manages persistent user account information.
-
-Mongoose provides schema definitions and database operations.
-
 ## 🛠️ Technology Stack
 
 ### Frontend
@@ -559,50 +380,6 @@ Trace_My_Self/
 ├── .gitignore
 └── README.md
 ```
-
-### Frontend Files
-
-**index.html**
-
-Contains the main application structure and user interface.
-
-**style.css**
-
-Contains the application's styling, layout, colors, and responsive design rules.
-
-**script.js**
-
-Contains frontend JavaScript logic, event handling, API communication, authentication interactions, and result rendering.
-
-### Backend Files
-
-**server.js**
-
-Main Express application entry point. Configures middleware, routes, database initialization, and application modules.
-
-**auth.js**
-
-Contains the user model, database connection, authentication routes, JWT handling, password hashing, and authentication middleware.
-
-**emailScanner.js**
-
-Contains the email analysis logic and external breach intelligence integration.
-
-**phoneScanner.js**
-
-Contains phone-number-related processing.
-
-**riskEngine.js**
-
-Calculates risk scores from available analysis findings.
-
-**verification.js**
-
-Contains email OTP verification, phone verification, Telegram bot integration, and scan authorization logic.
-
-**.env**
-
-Stores private configuration values and credentials. This file must never be committed to GitHub.
 
 ## 🔐 Authentication and Verification
 
